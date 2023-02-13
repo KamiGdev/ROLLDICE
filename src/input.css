@@ -20,18 +20,6 @@
 }
 
 
-        /* Record buttons, active/not active player */
-.fa-solid.fa-toggle-on {
-    display: none;
-    margin: auto;
-}
-
-
-.fa-solid.fa-toggle-on.active {
-    display: block;
-}
-
-
         /* Choose players and winner's modals */
 .margin-top-name {
     margin-top: 14rem;

@@ -147,6 +147,7 @@ window.onload = () => {
             player2.textContent =
                 player2_Name /* And add entry name of Player 2 in the game block */
 
+                console.log('chooseModal', chooseModal)
             chooseModal.style.display = "none"
             initGame()
         })
@@ -219,16 +220,16 @@ window.onload = () => {
     const playerBoard = document.querySelectorAll(".player-board")
 
     const switchToPlayer1 = () => {
-        player[0].classList.add("active")
-        player[1].classList.remove("active")
+        player[1].classList.add("hidden") // 2eme
+        player[0].classList.remove("hidden") // 1er
         playerBoard[0].style.background = "rgb(229 229 229)"
         playerBoard[1].style.background = "rgb(243 244 246)"
         actualPlayer = 0
     }
 
     const switchToPlayer2 = () => {
-        player[1].classList.add("active")
-        player[0].classList.remove("active")
+        player[0].classList.add("hidden")
+        player[1].classList.remove("hidden")
         playerBoard[1].style.backgroundColor = "rgb(229 229 229)"
         playerBoard[0].style.backgroundColor = "rgb(243 244 246)"
         actualPlayer = 1
