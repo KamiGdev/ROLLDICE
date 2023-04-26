@@ -1,260 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Best dice game. Play to a funny classic game with your friend"
-    />
-    <meta
-      name="keywords"
-      content="roll, dice, rolling, roll-dice, game, multiplayer"
-    />
-    <meta name="author" content="Kamilia Gourbail" />
-    <meta name="copyright" content="Kamilia Gourbail" />
-    <title>Dice Game</title>
-    <!-- Fonts Lato from google-->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- Font-awesome icons-->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-
-    <link rel="stylesheet" href="dist/output.css" />
-  </head>
-
-  <body class="body-bg-color w-screen h-screen px-10 pt-5 pb-20">
-    <!-- Play music icon, out of game feature-->
-    <div class="flex justify-center mb-3">
-      <audio src="./audio/Sade music.mp3" type="audio mp3" loop></audio>
-      <button class="playmusic-btn">
-        <img
-          src="images/playmusic-icon.svg"
-          class="w-10"
-          alt="play music icon"
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Best dice game. Play to a funny classic game with your friend"
         />
-      </button>
-    </div>
+        <meta
+            name="keywords"
+            content="roll, dice, rolling, roll-dice, game, multiplayer"
+        />
+        <meta name="author" content="Kamilia Gourbail" />
+        <meta name="copyright" content="Kamilia Gourbail" />
+        <title>Dice Game</title>
+        <!-- Fonts Lato from google-->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300&display=swap"
+            rel="stylesheet"
+        />
 
-    <main class="w-full h-full flex relative rounded">
-      <!-- w-full-->
-      <div
-        class="bg-gray-300 w-1/2 h-full flex flex-col items-center justify-between player-board"
-      >
-        <!-- 1d bloc player 1 -->
-        <div class="flex flex-col items-center mt-28">
-          <span class="flex">
-            <span class="player1-name col-span-2 font-extralight text-5xl mt-2"
-              >PLAYER 1</span
-            >
-            <i class="player fa-solid fa-circle text-red-400"></i>
-          </span>
+        <!-- Font-awesome icons-->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+            integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
 
-          <span
-            class="player-global-score col-span-2 font-medium text-8xl text-sky-900 text-center"
-            >0</span
-          >
-        </div>
+        <link rel="stylesheet" href="dist/output.css" />
+    </head>
 
-        <div
-          class="mb-8 flex flex-col items-center justify-center w-48 col-span-3 bg-red-400 h-40 rounded-md text-xl"
-        >
-          <p>CURRENT</p>
-          <p class="player-current-score text-4xl text-sky-900 pt-5">0</p>
-        </div>
-      </div>
-      <!-- Controls -->
-      <section
-        class="absolute -translate-x-1/2 left-1/2 flex flex-col justify-between h-full"
-      >
-        <div class="mt-5">
-          <!-- Rules modal -->
-          <div class="font-normal text-lg">
-            <span class="uppercase flex justify-center">
-              <button class="rules-btn">
-                <i
-                  class="fa-regular fa-pen-to-square text-sky-900 text-xl"
-                ></i></button
-              >&#8194;Rules
-            </span>
-
-            <div
-              style="z-index: -1"
-              class="rules-modal -translate-x-1/2 left-1/2 -translate-y-1/2 top-1/3 absolute w-[80vw] h-auto my-0 mx-auto p-5 leading-relaxed bg-gradient-to-r from-sky-500 via-cyan-800 to-cyan-900 rounded-md opacity-0 display-none transition-opacity duration-200 ease-in-out text-center"
-            >
-              <h1 class="normal-case text-red-400 font-semibold">
-                ** Dice Game Rules **
-              </h1>
-              <p class="text-base text-slate-100">
-                The game plays with 2 players in rounds.<br />At each turn, one
-                player can rolls a dice as many times as he whishes. Each result
-                get added to his ROUND score ("current").<br /><span
-                  class="font-semibold"
-                  >&#x1F62C; If the player rolls a 1 </span
-                >, all his ROUND score gets lost ("0"). Then it's the other
-                player's turn to play.<br />A player can choose to 'Hold', which
-                means that his ROUND score gets added to his GLOBAL score. After
-                that, it's the next player's turn.<br />&#x1F600; The first
-                player who reach<span class="font-semibold">
-                  100 points on GLOBAL score</span
-                >
-                wins the game !
-              </p>
-            </div>
-          </div>
-          <!-- New Game's button -->
-          <h2 class="font-medium text-xl">
-            <button class="new-game-modal-btn">
-              <i
-                class="fa-regular fa-square-plus text-red-400 text-2xl"
-              ></i></button
-            >&#8194;NEW GAME
-          </h2>
-          <div class="win-modal w-[80vw] -translate-x-1/2 left-1/2 p-[20px] body-bg-color rounded-md absolute visited text-center">
-            <div class="text-slate-100 flex flex-col">
-                    <!-- Close win modal on click--> 
-              <button class="close-win-modal mr-2 self-end"><i class="fa-regular fa-circle-xmark text-2xl"></i>
-              </button>
-
-              <div class="leading-loose">
-                <h3 id="winner-name" class="text-3xl pt-1">Congrats X</h3>
-                <p class="pt-4 mb-4 text-2xl ">You win this game!</p>
-              </div>
-                    <!-- Animation icon--> 
-              <p>
-                <lord-icon
-                  src="https://cdn.lordicon.com/lupuorrc.json"
-                  trigger="loop"
-                  colors="primary:#0c4a6e,secondary:#f87171"
-                  style="width:80px;height:80px">
-                </lord-icon>
-              </p>
-                    <!-- New game button--> 
-              <button id="newGameModal-after-win" class="self-center mt-10 text-white bg-gradient-to-r from-sky-700 via-cyan-800 to-cyan-900 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg  text-base px-3 py-2.5 mr-2 mb-2">New game
-              </button>   
-                                     
-            </div>
-          </div>
-
-          <!-- Choose modal-->
-          <div
-            class="absolute choose-modal p-[20px] bg-gradient-to-r from-red-200 to-red-400 rounded-md text-center -translate-x-1/2 left-1/2 top-1/4"
-          >
-            <h1 class="text-4xl font-medium">Welcome to the Roll Dice Game</h1>
-            <h2 class="text-2xl pt-5 mb-5">Enter players names</h2>
-            <!-- Labels and inputs-->
-            <div class="flex flex-row justify-center gap-10 mb-10">
-              <div class="flex flex-col">
-                <label
-                  for="name-player1"
-                  class="mb-2 text-base font-medium text-white"
-                  >Player 1</label
-                >
-                <input
-                  id="name-player1"
-                  type="text"
-                  class="bg-transparent border-b-2 border-red-400 text-sky-900 text-base font-semibold focus:outline-none cursor-text"
-                  required
+    <body class="body-bg-color h-screen w-screen px-10 pt-5 pb-20">
+        <!-- Play music icon, out of game feature-->
+        <div class="mb-3 flex justify-center">
+            <audio src="./audio/Sade music.mp3" type="audio mp3" loop></audio>
+            <button class="playmusic-btn">
+                <img
+                    src="images/playmusic-icon.svg"
+                    class="w-10"
+                    alt="play music icon"
                 />
-              </div>
-
-              <div class="flex flex-col">
-                <label
-                  for="name-player2"
-                  class="mb-2 text-base font-medium text-white"
-                  >Player 2</label
-                >
-                <input
-                  id="name-player2"
-                  type="text"
-                  class="bg-transparent border-b-2 border-red-400 text-sky-900 text-base font-semibold focus:outline-none cursor-text"
-                  required
-                />
-              </div>
-            </div>
-            <!-- Play button-->
-            <button
-              id="play-btn"
-              class="text-white bg-gradient-to-r from-sky-700 via-cyan-800 to-cyan-900 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-base px-5 py-2.5 mr-2 mb-2"
-            >
-              Play
             </button>
-          </div>
         </div>
 
-        <!-- Central dice icon -->
-        <div class="pt-24 pb-36">
-          <img
-            src="./images/dice-6.png"
-            alt="dice"
-            class="dice-img w-[150px] h-auto justify-center text-center"
-          />
-        </div>
+        <!-- Main block-->
+        <main class="relative flex h-full w-full rounded">
+            <!-- 1st block player 1 -->
+            <div class="player-board flex h-full w-1/2 flex-col items-center justify-between bg-gray-300">
+                <div class="mt-28 flex flex-col items-center">
+                    <span class="flex">
+                        <span class="player1-name col-span-2 mt-2 text-2xl font-extralight sm:text-3xl md:text-4xl lg:text-5xl">PLAYER 1</span>
+                        <i class="player fa-solid fa-circle text-red-400"></i>
+                    </span>
 
-        <div class="mb-5">
-          <!-- Roll dice icon and text -->
-          <div class="font-medium text-xl">
-            <button>
-              <audio class="roll-dice-audio">
-                <source src=./audio/roll-dice-audio.mp3 type="audio/mp3">
-              </audio>
-              <i
-                class="fa-solid fa-rotate text-red-400 text-2xl"
-                id="roll-dice-btn"
-              ></i></button
-            >&#8194;ROLL DICE
-          </div>
-          <!-- Hold dice icon and text -->
-          <div class="font-medium text-xl">
-            <i
-              class="fa-solid fa-arrow-right-to-bracket text-red-400 text-2xl cursor-pointer"
-              id="hold-dice-btn"
-            ></i
-            >&#8194;HOLD
-          </div>
-        </div>
-      </section>
+                    <span class="player-global-score col-span-2 text-center  font-medium text-sky-900 text-6xl lg:text-8xl">0</span>
+                </div>
 
-      <div
-        class="bg-gray-100 w-1/2 h-full flex flex-col items-center justify-between player-board"
-      >
-        <!-- 1d bloc player 1 -->
-        <div class="flex flex-col items-center mt-28">
-          <span class="flex">
-            <span class="player2-name col-span-2 font-extralight text-5xl mt-2"
-              >PLAYER 2</span
-            >
-            <i class="player fa-solid fa-circle text-red-400 hidden"></i>
-          </span>
+                <div class="flex h-auto w-20 flex-col items-center justify-center rounded-md bg-red-400 text-base md:h-30 md:w-36 lg:h-40 lg:w-48 lg:text-xl mb-[12vh] lg:mb-[6vh]">
+                    <p>CURRENT</p>
+                    <p class="player-current-score text-md pt-5 text-sky-900 sm:text-xl md:text-3xl lg:text-4xl">0</p>
+                </div>
+            </div>
 
-          <span
-            class="player-global-score col-span-2 font-medium text-8xl text-sky-900 text-center"
-            >0</span
-          >
-        </div>
+            <!-- Game controls -->
+            <section class="absolute left-1/2 flex h-full -translate-x-1/2 flex-col justify-between">
+                <div class="mt-5">
+                    <!-- Rules modal -->
+                    <div class="text-lg font-normal">
+                        <span class="flex justify-center uppercase">
+                            <button class="rules-btn">
+                              <i class="fa-regular fa-pen-to-square text-xl text-sky-900"></i>
+                            </button>&#8194;Rules
+                        </span>
 
-        <div
-          class="mb-8 flex flex-col items-center justify-center w-48 col-span-3 bg-red-400 h-40 rounded-md text-xl"
-        >
-          <p>CURRENT</p>
-          <p class="player-current-score text-4xl text-sky-900 pt-5">0</p>
-        </div>
-      </div>
-    </main>
+                        <div style="z-index: -1" class="rules-modal display-none absolute left-1/2 top-[41vh] my-0 mx-auto h-auto w-[80vw] -translate-x-1/2 -translate-y-1/2 rounded-md bg-gradient-to-r from-sky-500 via-cyan-800 to-cyan-900 p-5 text-center leading-relaxed opacity-0 transition-opacity duration-200 ease-in-out">
+                            <h1 class="font-semibold normal-case text-red-400">
+                                ** Dice Game Rules **
+                            </h1>
+                            <p class="text-base text-slate-100">
+                                The game plays with 2 players in rounds.<br />
+                                At each turn, one player can rolls a dice as
+                                many times as he whishes. Each result get added
+                                to his ROUND score ("current").<br />
+                                <span class="font-semibold"
+                                    >&#x1F62C; If the player rolls a 1 </span
+                                >, all his ROUND score gets lost ("0"). Then
+                                it's the other player's turn to play.<br />A
+                                player can choose to 'Hold', which means that
+                                his ROUND score gets added to his GLOBAL score.
+                                After that, it's the next player's turn.<br />&#x1F600;
+                                The first player who reach<span
+                                    class="font-semibold"
+                                    >100 points on GLOBAL score</span
+                                >wins the game !
+                            </p>
+                        </div>
+                    </div>
 
-    <script src="https://cdn.lordicon.com/fudrjiwc.js"></script>
-    <script src="./app.js"></script>
-  </body>
+                    <!-- New Game's button -->
+                    <h2 class="text-xl font-medium">
+                        <button class="new-game-modal-btn">
+                            <i class="fa-regular fa-square-plus text-2xl text-red-400"></i>
+                        </button
+                        >&#8194;NEW GAME
+                    </h2>
+                    
+                    <div class="win-modal body-bg-color visited absolute left-1/2 w-[80vw] -translate-x-1/2 rounded-md p-[20px] text-center">
+                        <div class="flex flex-col text-slate-100">
+                            <!-- Close win modal on click-->
+                            <button class="close-win-modal mr-2 self-end">
+                                <i class="fa-regular fa-circle-xmark text-2xl"></i>
+                            </button>
+
+                            <div class="leading-loose">
+                                <h3 id="winner-name" class="pt-1 text-3xl">Congrats X</h3>
+                                <p class="mb-4 pt-4 text-2xl">You win this game!</p>
+                            </div>
+                            <!-- Animation icon-->
+                            <p>
+                                <lord-icon
+                                    src="https://cdn.lordicon.com/lupuorrc.json"
+                                    trigger="loop"
+                                    colors="primary:#0c4a6e,secondary:#f87171"
+                                    style="width: 80px; height: 80px"
+                                >
+                                </lord-icon>
+                            </p>
+                            <!-- New game button-->
+                            <button id="newGameModal-after-win" class="mt-10 mr-2 mb-2 self-center rounded-lg bg-gradient-to-r from-sky-700 via-cyan-800 to-cyan-900 px-3 py-2.5 text-base font-medium text-white hover:bg-gradient-to-br focus:outline-none focus:ring-4 focus:ring-cyan-300">New game
+                            </button>
+                        </div>
+                    </div>
+
+
+
+
+                    <!-- Choose modal-->
+                    <div class="choose-modal absolute top-1/4 left-1/2 -translate-x-1/2 rounded-md bg-gradient-to-r from-red-200 to-red-400 p-[20px] text-center w-[70vw] md:w-[60vw] lg:w-[30vw]">
+
+                        <h1 class="font-medium text-xl md:text2l lg:text-4xl">
+                            Welcome to the Roll Dice Game
+                        </h1>
+                        <h2 class="text-md mb-5 pt-5 md:text-xl lg:text-2xl">
+                            Enter players names
+                        </h2>
+                        <!-- Labels and inputs-->
+                        <div class="mb-10 grid grid-cols-2 justify-center gap-10">
+                            <div class="flex flex-col">
+                                <label for="name-player1" class="mb-2 text-base font-medium text-white">Player 1</label>
+                                <input id="name-player1" type="text" class="cursor-text border-b-2 border-red-400 bg-transparent text-base font-semibold text-sky-900 focus:outline-none" required />
+                            </div>
+
+                            <div class="flex flex-col">
+                                <label for="name-player2" class="mb-2 text-base font-medium text-white">Player 2</label>
+                                <input id="name-player2" type="text" class="cursor-text border-b-2 border-red-400 bg-transparent text-base font-semibold text-sky-900 focus:outline-none" required />
+                            </div>
+                        </div>
+                        <!-- Play button-->
+                        <button id="play-btn" class="mr-2 mb-2 rounded-lg bg-gradient-to-r from-sky-700 via-cyan-800 to-cyan-900 px-5 py-2.5 text-base font-medium text-white hover:bg-gradient-to-br focus:outline-none focus:ring-4 focus:ring-cyan-300">Play
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Central dice icon -->
+                <div class="flex justify-center pt-24 pb-36">
+                    <img
+                        src="./images/dice-6.png"
+                        alt="dice"
+                        class="dice-img h-auto justify-center text-center w-[60px] sm:w-[90px] md:w-[150px]"
+                    />
+                </div>
+
+                <div class="mb-5 text-center">
+                    <!-- Roll dice icon and text -->
+                    <div class="font-medium text-sm md:text-md lg:text-xl">
+                        <button>
+                            <audio class="roll-dice-audio">
+                                <source src=./audio/roll-dice-audio.mp3
+                                type="audio/mp3">
+                            </audio>
+                            <i id="roll-dice-btn" class="fa-solid fa-rotate text-red-400 text-base sm:text-xl md:text-2xl"></i>
+                        </button>&#8194;ROLL DICE
+                    </div>
+                    <!-- Hold dice icon and text -->
+                    <div class="md:text-md text-sm font-medium lg:text-xl">
+                        <i id="hold-dice-btn" class="fa-solid fa-arrow-right-to-bracket cursor-pointer text-red-400 text-base sm:text-xl md:text-2xl"></i>
+                        &#8194;HOLD
+                    </div>
+                </div>
+            </section>
+
+
+
+            <div class="player-board flex h-full w-1/2 flex-col items-center justify-between bg-gray-100">
+                <!-- 2d bloc player 2 -->
+                <div class="mt-28 flex flex-col items-center">
+                    <span class="flex">
+                        <span class="player2-name mt-2 text-2xl font-extralight sm:text-3xl md:text-4xl lg:text-5xl">PLAYER 2</span>
+                        <i class="player fa-solid fa-circle hidden text-red-400"></i>
+                    </span>
+
+                    <span class="player-global-score text-center font-medium text-sky-900 text-6xl lg:text-8xl">0</span>
+                </div>
+
+                <div class="flex flex-col items-center justify-center rounded-md bg-red-400 text-base md:h-30 w-20 h-auto md:w-36 lg:h-40 lg:w-48 lg:text-xl mb-[12vh] lg:mb-[6vh]">
+                    <p>CURRENT</p>
+                    <p class="player-current-score text-md pt-5 text-sky-900 sm:text-xl md:text-3xl lg:text-4xl">0
+                    </p>
+                </div>
+            </div>
+        </main>
+
+        <script src="https://cdn.lordicon.com/fudrjiwc.js"></script>
+        <script src="./app.js"></script>
+    </body>
 </html>
