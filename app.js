@@ -247,9 +247,9 @@ window.onload = () => {
 
     const winnerModal = () => {
         /* Additional variable for winner's modal */
-        if (globalScoreP1 >= 100 || globalScoreP2 >= 100) {
+        if (globalScoreP1 >= 1 || globalScoreP2 >= 1) {
             winModal.style.display = "block"
-            if (globalScoreP1 >= 100) {
+            if (globalScoreP1 >= 1) {
                 winnerName.textContent = `Congrats ${player1_Name}`
             } else {
                 winnerName.textContent = `Congrats ${player2_Name}`
