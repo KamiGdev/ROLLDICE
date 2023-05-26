@@ -68,7 +68,7 @@ window.onload = () => {
     let globalScoreP2 = 0
     let currentScore = 0
     let actualPlayer = 0
-    let player1_Name, player2_Name /* For choose Modal players */
+    let player1_Name, player2_Name /* Player name variables come from input names */
 
 
 
@@ -117,11 +117,14 @@ window.onload = () => {
     // Choose Players Modal function
     const playBtn = document.getElementById("play-btn")
     let namePlayer1 =
-        document.getElementById("name-player1") /* Name 1 in the label */
+        document.getElementById("name-player1") /* Input name 1 */
+
     let namePlayer2 =
-        document.getElementById("name-player2") /* Name 2 in the label  */
+        document.getElementById("name-player2") /* Input name 2 */
+
     let player1 =
         document.querySelector(".player1-name") /* Name 1 in the game block */
+        
     let player2 =
         document.querySelector(".player2-name") /* Name 2 in the game block */
 
@@ -129,20 +132,20 @@ window.onload = () => {
         playBtn.addEventListener("click", () => {
             /* Play button, on click */
             if (namePlayer1.value == "") {
-                /* If no entry name of Player 1 */
-                player1_Name = "Player 1" /* Then enter "Player 1" */
+                /* If no input entry name of Player 1 */
+                player1_Name = "Player 1" /* Keep "Player 1" name */
             } else {
                 player1_Name =
-                    namePlayer1.value /* Or entry name of Player 1 in the input */
+                    namePlayer1.value /* Or keep Player 1 name which is written in the input */
             }
             player1.textContent =
                 player1_Name /* And add entry name of Player 1 in the game block */
             if (namePlayer2.value == "") {
-                /* If no entry name of Player 2 */
-                player2_Name = "Player 2" /* Then enter "Player 2" */
+                /* If no input entry name of Player 2 */
+                player2_Name = "Player 2" /* Keep "Player 2" name */
             } else {
                 player2_Name =
-                    namePlayer2.value /* Or entry name of Player 2 in the input */
+                    namePlayer2.value /* Or keep Player 2 name which is written in the input */
             }
             player2.textContent =
                 player2_Name /* And add entry name of Player 2 in the game block */
@@ -171,10 +174,10 @@ window.onload = () => {
             if (diceValue === 1) {
                 currentScore = 0
                 if (actualPlayer == 0) {
-                    currentPlayersScores[0].textContent = currentScore
+                    currentPlayersScores[0].textContent = currentScore /* index 0 on Player 1 position */
                     switchToPlayer2()
                 } else {
-                    currentPlayersScores[1].textContent = currentScore
+                    currentPlayersScores[1].textContent = currentScore /* index 1 on Player 2 position */
                     switchToPlayer1()
                 }
             } else {
@@ -214,14 +217,14 @@ window.onload = () => {
     }
 
 
-    // Switch Players function
+    // Backgrounds and active icon player when switching players
     const player =
         document.querySelectorAll(".player") /* player's icon, active or not */
     const playerBoard = document.querySelectorAll(".player-board")
 
     const switchToPlayer1 = () => {
-        player[1].classList.add("hidden") // 2eme
-        player[0].classList.remove("hidden") // 1er
+        player[1].classList.add("hidden") /* 2d player with index 2 = Player 2 */
+        player[0].classList.remove("hidden") /* 1st player with index 0 = Player 1 */
         playerBoard[0].style.background = "rgb(229 229 229)"
         playerBoard[1].style.background = "rgb(243 244 246)"
         actualPlayer = 0
@@ -246,13 +249,12 @@ window.onload = () => {
 
 
     const winnerModal = () => {
-        /* Additional variable for winner's modal */
         if (globalScoreP1 >= 100 || globalScoreP2 >= 100) {
             winModal.style.display = "block"
             if (globalScoreP1 >= 100) {
-                winnerName.textContent = `Congrats ${player1_Name}`
+                winnerName.textContent = `Congrats ${player1_Name}`  /* variable injection of Player1_name */
             } else {
-                winnerName.textContent = `Congrats ${player2_Name}`
+                winnerName.textContent = `Congrats ${player2_Name}` /* variable injection of Player2_name */
             }
 
             closeWinModal.addEventListener("click", () => {
